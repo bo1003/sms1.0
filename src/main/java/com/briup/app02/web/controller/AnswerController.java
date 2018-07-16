@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.app02.bean.Course;
-import com.briup.app02.service.ICourseService;
+import com.briup.app02.bean.Answer;
+import com.briup.app02.service.IAnswerService;
 import com.briup.app02.util.MsgResponse;
 
 //Rest服务构架
 @RestController
 //路由的命名空间
-@RequestMapping("/course")
-public class CourseController {
+@RequestMapping("/answer")
+public class AnswerController {
 	@Autowired
-	private ICourseService courseService;
+	private IAnswerService answerService;
 	
-	@GetMapping("findAllCourse")
-	public MsgResponse findAllCourse(){
+	@GetMapping("findAllAnswer")
+	public MsgResponse findAllAnswer(){
 		try {
-			List<Course> list = courseService.findAll();
+			List<Answer> list = answerService.findAll();
 			return MsgResponse.success("查询成功!", list);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,21 +31,21 @@ public class CourseController {
 		}
 	}
 	
-	@GetMapping("findByIdCourse")
-	public MsgResponse findByIdCourse(long id){
+	@GetMapping("findByIdAnswer")
+	public MsgResponse findByIdAnswer(long id){
 		try {
-			Course course = courseService.findById(id);
-			return MsgResponse.success("查询成功！", course);
+			Answer answer = answerService.findById(id);
+			return MsgResponse.success("查询成功！", answer);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
 	
-	@GetMapping("deleteByIdCourse")
-	public MsgResponse deleteByIdCourse(long id){
+	@GetMapping("deleteByIdAnswer")
+	public MsgResponse deleteByIdAnswer(long id){
 		try {
-			courseService.deleteById(id);
+			answerService.deleteById(id);
 			return MsgResponse.success("删除成功！", null);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,10 +53,10 @@ public class CourseController {
 		}
 	}
 	
-	@PostMapping("updateCourse")
-	public MsgResponse updateCourse(Course course){
+	@PostMapping("updateAnswer")
+	public MsgResponse updateAnswer(Answer answer){
 		try {
-			courseService.update(course);
+			answerService.update(answer);
 			return MsgResponse.success("更新成功！", null);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,10 +64,10 @@ public class CourseController {
 		}
 	}
 	
-	@PostMapping("insertCourse")
-	public MsgResponse insertCourse(Course course){
+	@PostMapping("insertAnswer")
+	public MsgResponse insertAnswer(Answer answer){
 		try {
-			courseService.insert(course);
+			answerService.insert(answer);
 			return MsgResponse.success("插入成功！", null);
 		} catch (Exception e) {
 			e.printStackTrace();

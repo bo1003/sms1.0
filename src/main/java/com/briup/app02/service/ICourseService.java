@@ -5,7 +5,16 @@ import java.util.List;
 import com.briup.app02.bean.Course;
 
 public interface ICourseService {
-	//查询所有课程信息
+	
 	List<Course> findAll() throws Exception;
+	
+	Course findById(long id) throws Exception;
+	
+	void deleteById(long id) throws Exception;
+	
+	void update(Course course) throws Exception;
+	
+	void insert(Course course) throws Exception;
 
 }
+

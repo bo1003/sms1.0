@@ -1,10 +1,10 @@
 package com.briup.app02.bean;
 
-public class Course {
+public class Questionnaire {
 	private Long id;
 	private String name;
 	private String description;
-	private String period;
+	private String createdate;
 	public Long getId() {
 		return id;
 	}
@@ -23,11 +23,11 @@ public class Course {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getPeriod() {
-		return period;
+	public String getCreatedate() {
+		return createdate;
 	}
-	public void setPeriod(String period) {
-		this.period = period;
+	public void setCreatedate(String createdate) {
+		this.createdate = createdate;
 	}
 
 }
