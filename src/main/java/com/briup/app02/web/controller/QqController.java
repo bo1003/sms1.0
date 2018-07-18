@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.briup.app02.bean.Qq;
 import com.briup.app02.service.IQqService;
 import com.briup.app02.util.MsgResponse;
+import com.briup.app02.vm.QqVM;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(description="问题-问卷相关接口")
 //Rest服务构架
 @RestController
 //路由的命名空间
@@ -19,6 +24,30 @@ import com.briup.app02.util.MsgResponse;
 public class QqController {
 	@Autowired
 	private IQqService qqService;
+	
+	@ApiOperation(value="查询所有问题-问卷信息",notes="能联级查询到问题和问卷的相关信息")
+	@GetMapping("findAllQqVM")
+	public MsgResponse findAllQqVM(){
+		try {
+			List<QqVM> list = qqService.findAllQqVM();
+			return MsgResponse.success("查询成功!", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="通过id查询问题-问卷信息",notes="能联级查询到问题和问卷的相关信息")
+	@GetMapping("findByIdQqVM")
+	public MsgResponse findByIdQqVM(long id){
+		try {
+			QqVM qqVM = qqService.findByIdQqVM(id);
+			return MsgResponse.success("查询成功！", qqVM);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	
 	@GetMapping("findAllQq")
 	public MsgResponse findAllQq(){

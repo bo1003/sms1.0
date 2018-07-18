@@ -1,18 +1,14 @@
-package com.briup.app02.bean;
+package com.briup.app02.vm;
 
-public class Question {
+import java.util.List;
+
+import com.briup.app02.bean.Option;
+
+public class QuestionVM {
 	private Long id;
 	private String name;
 	private String questiontype;
-	public Question(){
-		
-	}
-	public Question(Long id, String name, String questiontype) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.questiontype = questiontype;
-	}
+	private List<Option> options;
 	public Long getId() {
 		return id;
 	}
@@ -31,6 +27,10 @@ public class Question {
 	public void setQuestiontype(String questiontype) {
 		this.questiontype = questiontype;
 	}
-	
-
+	public List<Option> getOptions() {
+		return options;
+	}
+	public void setOptions(List<Option> options) {
+		this.options = options;
+	}
 }

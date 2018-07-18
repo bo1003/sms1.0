@@ -23,7 +23,7 @@
   where id = #{id}
   </update>
   
-  <insert id="insert" parameterType="com.briup.app02.bean.Question">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.briup.app02.bean.Question">
   insert into poll_question
   values (null,#{name},#{questiontype})
   </insert>

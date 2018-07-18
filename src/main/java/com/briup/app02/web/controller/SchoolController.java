@@ -12,6 +12,10 @@ import com.briup.app02.bean.School;
 import com.briup.app02.service.ISchoolService;
 import com.briup.app02.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(description = "学校相关接口")
 //Rest服务构架
 @RestController
 //路由的命名空间
@@ -28,6 +32,7 @@ public class SchoolController {
 		 * 查询所有学校信息
 		 */
 		//映射
+		@ApiOperation(value = "查询所有学校信息")
 		@GetMapping("findAllSchool")
 		public MsgResponse findAllSchool(){
 			

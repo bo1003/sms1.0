@@ -7,13 +7,40 @@ import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.Survey;
 import com.briup.app02.dao.SurveyMapper;
+import com.briup.app02.dao.extend.SurveyVMMapper;
 import com.briup.app02.service.ISurveyService;
+import com.briup.app02.vm.SurveyVM;
 @Service
 
 public class SurveyServiceImpl implements ISurveyService {
 	@Autowired
 	private SurveyMapper surveyMapper;
+    @Autowired
+    private SurveyVMMapper surveyVMMapper;
+	
+	@Override
+	public List<SurveyVM> findAllSurveyVM() throws Exception {
+		List<SurveyVM> list = surveyVMMapper.findAllSurveyVM();
+		if(!list.isEmpty()){
+			return list;
+		}
+		else{
+			throw new Exception("查询异常！");
+		}
+	}
 
+	@Override
+	public SurveyVM findByIdSurveyVM(long id) throws Exception {
+		SurveyVM surveyVM = surveyVMMapper.findByIdSurveyVM(id);
+		if(surveyVM != null){
+			surveyVMMapper.findByIdSurveyVM(id);
+		}
+		else{
+			throw new Exception("查询异常！");
+		}
+		return surveyVM;
+	}
+	
 	@Override
 	public List<Survey> findAll() throws Exception {
 		List<Survey> list = surveyMapper.findAll();

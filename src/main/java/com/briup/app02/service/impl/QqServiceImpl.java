@@ -7,12 +7,39 @@ import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.Qq;
 import com.briup.app02.dao.QqMapper;
+import com.briup.app02.dao.extend.QqVMMapper;
 import com.briup.app02.service.IQqService;
+import com.briup.app02.vm.QqVM;
 @Service
 
 public class QqServiceImpl implements IQqService {
 	@Autowired
 	private QqMapper qqMapper;
+	@Autowired
+	private QqVMMapper qqVMMapper;
+	
+	@Override
+	public List<QqVM> findAllQqVM() throws Exception {
+		List<QqVM> list = qqVMMapper.findAllQqVM();
+		if(!list.isEmpty()){
+			return list;
+		}
+		else{
+			throw new Exception("查询异常！");
+		}
+	}
+	
+	@Override
+	public QqVM findByIdQqVM(long id) throws Exception {
+		QqVM qqVM = qqVMMapper.findByIdQqVM(id);
+		if(qqVM != null){
+			qqVMMapper.findByIdQqVM(id);
+		}
+		else{
+			throw new Exception("查询异常！");
+		}
+		return qqVM;
+	}
 
 	@Override
 	public List<Qq> findAll() throws Exception {

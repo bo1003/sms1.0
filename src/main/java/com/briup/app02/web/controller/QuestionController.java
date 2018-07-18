@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.briup.app02.bean.Question;
 import com.briup.app02.service.IQuestionService;
 import com.briup.app02.util.MsgResponse;
+import com.briup.app02.vm.QuestionVM;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(description  = "问题相关接口")
 //Rest服务构架
 @RestController
 //路由的命名空间
@@ -25,6 +30,42 @@ public class QuestionController {
 		try {
 			List<Question> list = questionService.findAll();
 			return MsgResponse.success("查询成功!", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="查询所有问题信息",notes="能查询到问题的选项")
+	@GetMapping("findAllQuestionVM")
+	public MsgResponse findAllQuestionVM(){
+		try {
+			List<QuestionVM> list = questionService.findAllQuestionVM();
+			return MsgResponse.success("查询成功!", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="通过id查询问题信息",notes="能查询到问题的选项")
+	@GetMapping("findByIdQuestionVM")
+	public MsgResponse findByIdQuestionVM(long id){
+		try {
+			QuestionVM questionVM = questionService.findByIdQuestionVM(id);
+			return MsgResponse.success("查询成功！", questionVM);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="保存问题信息",notes="保存问题时同时还保存选项")
+	@PostMapping("saveQuestion")
+	public MsgResponse saveQuestion(QuestionVM questionVM){
+		try {
+			questionService.saveQuestion(questionVM);
+			return MsgResponse.success("保存成功！", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
