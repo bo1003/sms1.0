@@ -12,6 +12,9 @@ import com.briup.app02.bean.Grade;
 import com.briup.app02.service.IGradeService;
 import com.briup.app02.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+
+@Api(description="年及相关接口")
 //Rest服务构架
 @RestController
 //路由的命名空间
